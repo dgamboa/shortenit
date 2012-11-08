@@ -1,7 +1,9 @@
 Shortenit::Application.routes.draw do
-  root to: 'url#index'
+  root to: 'urls#index'
 
   resources :urls
+
+  match ':short_url' => "urls#show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
