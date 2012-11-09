@@ -1,5 +1,5 @@
 class Url < ActiveRecord::Base
-  attr_accessible :long_url, :short_url
+  attr_accessible :long_url, :short_url, :num_views
 
   validates :long_url, :format => { :with => /http[s]?:\/\//, :on => :create }
 

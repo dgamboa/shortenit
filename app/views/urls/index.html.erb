@@ -3,11 +3,13 @@
   <tr>
     <th>Long URL</th>
     <th>Short URL</th>
+    <th>Views</th>
   </tr>
   <% @urls.each do |url| %>
     <tr>
-      <td><%= url.long_url%></td>
-      <td><%= url.short_url %></td>
+      <td><%= url.long_url %></td>
+      <td><%= link_to "#{url.short_url}", url.short_url %></td>
+      <td><%= url.num_views.nil? ? 0 : url.num_views %></td>
     </tr>
   <% end %>
 </table>

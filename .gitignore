@@ -18,3 +18,7 @@ tmp
 _yardoc
 doc/
 
+# Logs and databases #
+*.log
+*.sql
+*.sqlite3
