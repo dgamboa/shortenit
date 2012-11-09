@@ -1,19 +1,23 @@
 <h1>URLs</h1>
 <table>
   <tr>
-    <th>Long URL</th>
-    <th>Short URL</th>
-    <th>Views</th>
+    <th align="left" width="300">Long URL</th>
+    <th align="center">Short URL</th>
+    <th align="center">Views</th>
   </tr>
   <% @urls.each do |url| %>
     <tr>
       <td><%= url.long_url %></td>
-      <td><%= link_to "#{url.short_url}", url.short_url %></td>
-      <td><%= url.num_views.nil? ? 0 : url.num_views %></td>
+      <td align="center"><%= link_to "#{url.short_url}", url.short_url %></td>
+      <td align="center"><%= url.num_views.nil? ? 0 : url.num_views %></td>
+      <td align="center">
+        <% if current_user && url.user_id == current_user.id %>
+          <%= link_to 'Destroy', url , :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>
-
+<br />
 <%= link_to 'create new url', new_url_path %>
-
 

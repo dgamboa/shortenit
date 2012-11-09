@@ -1,5 +1,4 @@
 class UrlsController < ApplicationController
-  before_filter :authentica_user!, :only => [:destroy]
 
   def index
     @urls = Url.all
@@ -10,7 +9,9 @@ class UrlsController < ApplicationController
   end
 
   def create
-    @url = Url.new params[:url]
+    @user = current_user
+    @url = @user.urls.build(params[:url])
+
     if @url.save
       redirect_to urls_path
     else
@@ -25,10 +26,11 @@ class UrlsController < ApplicationController
   end
 
   def destroy
+    @url = Url.find(params[:id])
     @url.destroy
 
     respond_to do |format|
-      format.html { redirect_to urls_path }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end
